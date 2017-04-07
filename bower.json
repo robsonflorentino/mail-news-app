@@ -1,0 +1,13 @@
+{
+  "name": "mail-news-app",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap": "3.3.5",
+    "bootswatch-dist": "yeti",
+    "angular": "1.4.6",
+    "font-awesome": "fontawesome#^4.6.1",
+    "angular-redactor": "^1.1.6",
+    "redactor": "imperavi-redactor#^10.0.9",
+    "bootstrap3-dialog": "BootstrapDialog#^1.35.1"
+  }
+}

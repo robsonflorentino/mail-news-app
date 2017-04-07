@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <title>
+        Primo News Sender Application
+    </title>
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="libs/bootswatch-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="libs/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="libs/redactor/redactor/redactor.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+
+
+    <div ng-include src="'partials/header.html'"></div>
+    <div ng-controller="main" class="container">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="news.title" placeholder="Título">
+            </div>
+            <div class="form-group">
+              <textarea id="redactor" ng-model="news.desc" redactor cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary pull-right" ng-click="add()">Adicionar</button>
+            </div>
+        </div>
+
+        <div ng-show="newsList.length > 0" class="page-header">&nbsp;</div>
+        <div ng-show="newsList.length > 0" class="col-md-12">
+          <div class="well">
+            <div id="mailPreview" content-preview="newsList"></div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary pull-right" ng-disabled="newsList.length == 0" ng-click="send()">Enviar</button>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+      &nbsp;
+    </div>
+
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="libs/bootswatch-dist/js/bootstrap.min.js"></script>
+    <script src="libs/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js" ></script>
+    <script src="libs/redactor/redactor/redactor.min.js"></script>
+    <script src="libs/angular/angular.js"></script>
+    <script src="libs/angular-redactor/angular-redactor-9.x.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

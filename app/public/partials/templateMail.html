@@ -1,0 +1,20 @@
+<div id="mail">
+  <div id="template-mail" style="border:solid 1px #dddddd; width: 99.5%; margin: auto; font-family: Tahoma, Geneva, sans-serif; color: #FFFFFF;">
+    <div id="content-head" style="background-color: #275C51; padding: 5px 0; margin-bottom: 2px">
+      <div class="img-logo" style="text-align: center;">
+        <img src="http://www.callink.com.br/img/primo-investment-mini.png" alt="PRIMO INVESTMENT FUND">
+      </div>
+    </div>
+
+    <div id="content-body">
+      <div ng-repeat="n in newsList">
+        <h2 style="background-color: #275C51; margin: 0; padding: 3px 10px; font-size: 10pt; font-weight: bolder">{{n.title}}</h2>
+        <div style="color: #000000; padding: 10px; text-align: justify" ng-bind-html=" n.desc | to_trusted"></div>
+      </div>
+    </div>
+
+    <div id="content-footer" style="background-color: #275C51; padding: 5px; color: #fff; font-size: 7pt; text-align: right">
+      Fontes: BI, Investors, Valor, Bloomberg, Reuters, FT
+    </div>
+  </div>
+</div>

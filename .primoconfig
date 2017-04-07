@@ -1,0 +1,10 @@
+[smtp]
+host=10.33.4.85
+port=25
+user=noreply_primo
+pass=Primo0101
+
+[mail]
+from=noreply@primoinvestment.com
+to=robson.florentino@callink.com.br
+subject=Primo News
