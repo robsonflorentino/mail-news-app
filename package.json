@@ -14,11 +14,13 @@
     "cookie-parser": "~1.0.1",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "formidable": "^1.1.1",
+    "grunt": "^0.4.5",
+    "html-to-pdf": "0.1.11",
     "nodemailer": "^2.3.2",
     "nodemailer-smtp-transport": "^2.4.2",
     "nw": "^0.12.3",
-    "properties-reader": "0.0.15",
-	"html-to-pdf" : "0.1.11"
+    "properties-reader": "0.0.15"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

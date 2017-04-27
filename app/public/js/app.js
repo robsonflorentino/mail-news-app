@@ -12,6 +12,7 @@ application.factory('$sendMailService', function($http) {
 
 
 application.controller('main', function($scope, $sendMailService) {
+	
     $scope.templateMail = 'partials/templateMail.html',
     $scope.newsList = [];
     $scope.news = {};

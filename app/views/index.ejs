@@ -23,7 +23,10 @@
                 <input type="text" class="form-control" ng-model="news.title" placeholder="Título">
             </div>
             <div class="form-group">
-              <textarea id="redactor" ng-model="news.desc" redactor cols="30" rows="10"></textarea>
+              <textarea id="redactor" ng-model="news.desc" redactor="{
+		buttons: ['format', 'bold', 'italic', 'deleted', 'lists', 'image', 'file', 'link', 'horizontalrule'],
+		imageUpload: '/api/upload'
+    }" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group">
               <button class="btn btn-primary pull-right" ng-click="add()">Adicionar</button>
