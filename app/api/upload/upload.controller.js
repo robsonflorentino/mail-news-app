@@ -9,11 +9,9 @@ exports.send = function upload(req, res){
     res.writeHead(200, {'content-type': 'text/plain'});
     res.write('received upload:\n\n');
 	
-	console.log(files);
-	
     var image = files.file
       , image_upload_path_old = image.path
-      , image_upload_path_new = './upload/'
+      , image_upload_path_new = './app/public/img/upload/'
       , image_upload_name = image.name
       , image_upload_path_name = image_upload_path_new + image_upload_name
       ;
@@ -44,8 +42,7 @@ exports.send = function upload(req, res){
           function(err) {
           var msg = 'Imagem ' + image_upload_name + ' salva em: ' + image_upload_path_new;
           console.log(msg);
-          //res.end(msg);
-		  res.send(image_upload_path_name);
+          res.end(msg);
         });
       });
     }

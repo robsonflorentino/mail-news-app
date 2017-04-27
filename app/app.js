@@ -18,6 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/sendmail', require('./api/sendmail'));
 app.use('/api/upload', require('./api/upload'));
+app.use('/api/images', require('./api/images'));
 
 app.get('/', routes.index);
 
