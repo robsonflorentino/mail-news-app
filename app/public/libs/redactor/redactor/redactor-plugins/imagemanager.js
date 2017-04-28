@@ -50,7 +50,8 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 			},
 			insert: function(e)
 			{
-				this.image.insert('<img src="' + $(e.target).attr('src') + '" alt="' + $(e.target).attr('title') + '">');
+				console.log($(e.target).attr('rel'));
+				this.image.insert('<img src="' + $(e.target).attr('rel') + '" alt="' + $(e.target).attr('title') + '">');
 			}
 		};
 	};

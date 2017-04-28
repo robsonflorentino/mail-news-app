@@ -2,7 +2,9 @@ var nodemailer = require('nodemailer'),
     smtpTransport = require('nodemailer-smtp-transport'),
     PropertiesReader = require('properties-reader'),
     path = require('path'),
-    htmlToPdf = require('html-to-pdf');
+    htmlToPdf = require('html-to-pdf'),
+	pdf = require('html-pdf'),
+	inlineBase64 = require('nodemailer-plugin-inline-base64');
 
 var properties = PropertiesReader(path.resolve(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'] + '/.primoinvestment/.primoconfig'));
 
@@ -28,7 +30,11 @@ var transporterWithoutAuth = nodemailer.createTransport(smtpTransport({
 
 exports.send = function(req,res){
 
+  debugger;
+
   var mailOptions = {
+	secureConnection: true,
+	transportMethod: 'SMTP',
     to: properties.get('mail.to'),
     subject: properties.get('mail.subject') + ' ' + getDate(),
     from: properties.get('mail.from'),
@@ -58,24 +64,25 @@ exports.send = function(req,res){
 
     return mm + divider + dd + divider + yyyy;
   }
+
   
-  htmlToPdf.setDebug(true);
-  htmlToPdf.setInputEncoding('UTF-8');
-  htmlToPdf.setOutputEncoding('UTF-8');
-  htmlToPdf.convertHTMLString(req.body.data, pdfFile, function (error, success) {
-    
-      if (error) {
+  var html = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>' + req.body.data + '</html>'; 
+  
+  var options = { format: 'Letter' };
+ 
+  pdf.create(html, options).toFile(pdfFile, function(error, success) {
+	if (error) {
         res.send({'error': true, 'message': error.message});
         console.log(err);
       } else {
-        res.send({'success': false, 'message': 'Arquivo pdf gerado com sucesso'});
-        
-        debugger;
+        //res.send({'error': false, 'message': 'Arquivo pdf gerado com sucesso'});
         
         if(properties.get('smtp.auth')) {
           
           console.log('executando envio com autenticação.');
           
+		  transporterWithAuth.use('compile', inlineBase64({cidPrefix: 'somePrefix_'}));
+		  
           transporterWithAuth.sendMail(mailOptions, function(error, info){
             if (error) {
               res.send({'error': true, 'message': error.message});
@@ -88,6 +95,8 @@ exports.send = function(req,res){
           
           console.log('executando envio sem autenticação.');
           
+		  transporterWithoutAuth.use('compile', inlineBase64({cidPrefix: 'somePrefix_'}));
+		  
           transporterWithoutAuth.sendMail(mailOptions, function(error, info){
             if (error) {
               res.send({'error': true, 'message': error.message});
@@ -98,6 +107,5 @@ exports.send = function(req,res){
           });
         }
       }
-    }
-  );
+  });
 }
